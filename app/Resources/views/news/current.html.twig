@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+{% block title %}Текущая новость{% endblock %}
+{% block body %}
+
+    </br>
+<center>
+    <a href="{{ url('newsn') }}">К новостям</a>
+    </br>
+    {% for post in news %}
+        {% thumbnail post.logo,'small'%}
+        <h2>{{ post.title }}</h2>
+        <td><h4>{{ post.title }} - {{ post.date | date ('d.m.Y-H:i') }} </h4></td>
+        <h4>{{ post.descr }}</h4>
+        </br>
+        {% for gal in post.gallery %}
+            <h2>{{gal.name}}</h2>
+            {% for galmedia in gal.galleryHasMedias %}
+                </br>
+                {% thumbnail galmedia.media,'big'%}
+            {% endfor %}
+        {% endfor %}
+    {% endfor%}
+
+
+</center>
+{% endblock %}

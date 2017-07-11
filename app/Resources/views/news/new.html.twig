@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ title }}{% endblock %}
+{% block body %}
+    </br>
+    <div class="text-center"> <a href="{{ url('news') }}">На главную</a></div>
+    <div class="text-center">
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+    </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+# Learn more about services, parameters and containers at
+# https://symfony.com/doc/current/service_container.html
+parameters:
+    #parameter_name: value
+
+services:
+       admin.newsn:
+           class: AppBundle\Admin\NewsnAdmin
+           arguments: [~, AppBundle\Entity\Newsn, ~]
+           tags:
+               - { name: sonata.admin, manager_type: orm, label: News, group: Новости }
+
+       admin.category:
+                  class: AppBundle\Admin\CategoryAdmin
+                  arguments: [~, AppBundle\Entity\Category, ~]
+                  tags:
+                      - { name: sonata.admin, manager_type: orm, label: Category, group: Категории }
