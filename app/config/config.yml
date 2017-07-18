@@ -81,7 +81,11 @@ sonata_user:
     class:                  # Entity Classes
         user:               AppBundle\Entity\User
         group:              Application\Sonata\UserBundle\Entity\Group
-
+    admin:                  # Admin Classes
+        user:
+            class:          Application\Sonata\UserBundle\Admin\Model\UserAdmin
+            controller:     SonataAdminBundle:CRUD
+            translation:    SonataUserBundle
 sonata_media:
     # if you don't use default namespace configuration
     #class:
