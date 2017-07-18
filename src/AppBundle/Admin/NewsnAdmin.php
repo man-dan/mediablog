@@ -14,6 +14,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Doctrine\DBAL\Types\DateTimeTypeType;
+use Application\Sonata\UserBundle\Entity\User;
 
 class NewsnAdmin extends Admin
 {
@@ -24,13 +25,15 @@ class NewsnAdmin extends Admin
                 'context' => 'gallery',
                 'provider' => 'sonata.media.provider.image',
                 'label' => 'Логотип',
-                'required' => true
+                'required' => false
             ])
             ->add('descr','text')
             ->add ('date','datetime',['data'=>new \DateTime(),'label'=>'Дата'])
             ->add('active')
             ->add('category')
-            ->add('gallery', 'sonata_type_model', ['label' => 'Галереи','multiple' => true, 'by_reference' => false, 'btn_add'=> false, 'required' => false]);
+            ->add('gallery', 'sonata_type_model', ['label' => 'Галереи','multiple' => true, 'by_reference' => false, 'btn_add'=> false, 'required' => false])
+            ->add('users')
+            ->add('user');
     }
 
 
@@ -43,7 +46,9 @@ class NewsnAdmin extends Admin
             ->add('date')
             ->add('active')
             ->add('category')
-            ->add('gallery');
+            ->add('gallery')
+            ->add('users')
+            ->add('user');
     }
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
@@ -53,7 +58,9 @@ class NewsnAdmin extends Admin
             ->add('date')
             ->add('active')
             ->add('category')
-            ->add('gallery');
+            ->add('gallery')
+            ->add('users')
+            ->add('user');
     }
 
 }

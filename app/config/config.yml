@@ -35,7 +35,7 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
 
-# Doctrine Configuration
+  # Doctrine Configuration
 doctrine:
     dbal:
         driver: pdo_mysql
@@ -56,12 +56,7 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
-        entity_managers:
-          default:
-            mappings:
-             ApplicationSonataMediaBundle: ~
-             SonataMediaBundle: ~
-             AppBundle: ~
+        auto_mapping: true
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -82,6 +77,10 @@ sonata_block:
         sonata.block.service.text:
         sonata.block.service.action:
         sonata.block.service.rss:
+sonata_user:
+    class:                  # Entity Classes
+        user:               AppBundle\Entity\User
+        group:              Application\Sonata\UserBundle\Entity\Group
 
 sonata_media:
     # if you don't use default namespace configuration
@@ -106,7 +105,12 @@ sonata_media:
                formats:
                    small: { width: 150 , quality: 95}
                    big:   { width: 500 , quality: 90}
-
+        avatar:
+                       providers:
+                           - sonata.media.provider.image
+                       formats:
+                           small: { width: 150 , quality: 95}
+                           big:   { width: 500 , quality: 90}
     cdn:
         server:
             path: /uploads/media # http://media.sonata-project.org/
@@ -117,3 +121,15 @@ sonata_media:
             create:     false
 
 
+
+fos_user:
+    db_driver:      orm # can be orm or odm
+    firewall_name:  main
+    user_class:     AppBundle\Entity\User
+
+    group:
+        group_class:   Application\Sonata\UserBundle\Entity\Group
+        group_manager: sonata.user.orm.group_manager                    # If you're using doctrine orm (use sonata.user.mongodb.group_manager for mongodb)
+
+    service:
+        user_manager: sonata.user.orm.user_manager                      # If you're using doctrine orm (use sonata.user.mongodb.user_manager for mongodb)

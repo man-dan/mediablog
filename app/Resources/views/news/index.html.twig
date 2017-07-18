@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}{{ title }}{% endblock %}
+{% block title %}Новости{% endblock %}
 {% block body %}
 
     </br>
@@ -14,8 +14,10 @@
             <th class="text-center">Дата записи</th>
             <th></th>
         </tr>
-
-        {% for post in news %}
+           
+        
+        
+        {% for post in user_news %}
 
         <tr class="success">
             <td >{{ loop.index }}</td>
@@ -25,6 +27,8 @@
             <td>{{ post.date| date ('d.m.Y-H:i') }}</td>
             <td><a href="{{ url('curr', {'id': post.id}) }}">Show record</a></td>
         </tr>
+
+
 
 {% endfor %}
     </table>
